@@ -4,21 +4,22 @@
 [ext_resource path="res://Player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.671, 59.7327 )
+extents = Vector2( 11.5071, 51.5325 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 45.5, 305.5 )
+position = Vector2( 23.5, 336.5 )
 scale = Vector2( 2.34424, 1.80267 )
 script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.040309, 11.3458 )
+scale = Vector2( 0.669747, 0.867048 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.629353, 10.7663 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 4.06289, 2.64175 )
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 5.07862, 3.30219 )
-scale = Vector2( 1, 1 )
-texture = ExtResource( 1 )

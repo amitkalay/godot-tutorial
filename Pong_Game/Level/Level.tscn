@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Opponent/Opponent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1166.13, 22.6613 )
+extents = Vector2( 1758.63, 22.6613 )
 
 [node name="Level" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0784314, 0.129412, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 28.8511, 315.014 )
@@ -22,3 +32,9 @@ position = Vector2( 101.563, 738.218 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
 position = Vector2( 768.108, 8.23461 )
 shape = SubResource( 1 )
+
+[node name="Opponent" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1262.94, 337.735 )
+
+[node name="Ball" parent="." instance=ExtResource( 3 )]
+position = Vector2( 642.058, 333.71 )
