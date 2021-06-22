@@ -1,19 +1,57 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Opponent/Opponent.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Ball/Ball.gd" type="Script" id=4]
+[ext_resource path="res://Level/Level.gd" type="Script" id=5]
+[ext_resource path="res://Assets/PoetsenOne-Regular.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 6 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1758.63, 22.6613 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10.597, 356.368 )
+
 [node name="Level" type="Node"]
+script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0784314, 0.129412, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerScore" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+custom_fonts/font = SubResource( 1 )
+text = "Testing Stuff"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentScore" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+custom_fonts/font = SubResource( 4 )
+text = "Opponent's score"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,19 +62,35 @@ position = Vector2( 28.8511, 315.014 )
 [node name="WallTop" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
-position = Vector2( 388.326, -25.9992 )
-shape = SubResource( 1 )
+position = Vector2( 388.326, -26.9992 )
+shape = SubResource( 2 )
 
 [node name="WallBottom" type="StaticBody2D" parent="."]
 position = Vector2( 101.563, 738.218 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
 position = Vector2( 768.108, 8.23461 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Opponent" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1262.94, 337.735 )
 
 [node name="Ball" parent="." instance=ExtResource( 3 )]
-position = Vector2( 642.058, 333.71 )
+position = Vector2( 638.058, 405.71 )
 script = ExtResource( 4 )
+
+[node name="LeftArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea"]
+position = Vector2( -25, 360 )
+shape = SubResource( 3 )
+
+[node name="RightArea" type="Area2D" parent="."]
+position = Vector2( 1324, -2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea"]
+position = Vector2( -28, 362 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="LeftArea" to="." method="_on_LeftArea_body_entered"]
+[connection signal="body_entered" from="RightArea" to="." method="_on_RightArea_body_entered"]
